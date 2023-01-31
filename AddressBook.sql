@@ -81,3 +81,74 @@ where FirstName='Ramesh'
 update Address_Book_Table
 set AddressBookName='Manager',Type='Profession'
 where FirstName='Meena'
+
+
+------ UC 10: Ability to get number of contact persons by Type------
+select Count(*) as NumberOfContacts,Type
+from Address_Book_Table
+Group by Type
+
+--Update values for Type=Family--
+update Address_Book_Table
+set AddressBookName='Cousin',Type='Family'
+where FirstName='Ramesh'
+
+--Update values for Type=Profession--
+update Address_Book_Table
+set AddressBookName='Manager',Type='Profession'
+where FirstName='Meena'
+-------- Creating Tables Based on ER Diagrams  --------
+
+create table Address_Book(
+Address_BookID int identity(1,1) primary key,
+Address_BookName varchar(200)
+)
+insert into Address_Book values ('Add Book'),('Home Book')
+select * from Address_Book
+
+create table Contact_Person(
+AddressBook_ID int,
+Contact_ID int identity(1,1) primary key,
+FirstName varchar(100),
+SecondName varchar(100),
+Address varchar(250),
+City varchar(100),
+State varchar(100),
+zip BigInt,
+PhoneNumber BigInt,
+Email varchar(200),
+foreign key (AddressBook_ID) references Address_Book(Address_BookID))
+
+insert into Contact_Person values
+(1,'Harsh','Vardhan','645 Catherine Street','Bangalore','Karnataka',243001,9842905050,'harsh@gmail.com'),
+(2,'Ramesh','Kumar','836 Heritage Rd','Chennai','Tamil Nadu',134002,98402000,'Ramesh@gmail.com'),
+(3,'Anita','Yadav','19 Augusta Avenue','Lucknow','Uttar Pradesh',113201,87210505053,'anita@gmail.com'),
+(4,'Meena','Verma','356 Newburgh','Bangalore','Karnataka',243001,9842905050,'meena@gmail.com')
+
+select * from Contact_Person
+
+create table ContactType
+(ContactType_ID int identity(1,1) primary key,
+ContactType_Name varchar(200)
+)
+
+insert into ContactType values
+('Family'),('Friends'),('Profession')
+
+select * from ContactType
+
+create Table TypeManager(
+ContactType_Identity int,
+Contact_Identity int,
+foreign key (ContactType_Identity) references ContactType(ContactType_ID),
+foreign key (Contact_Identity) references Contact_Person(Contact_ID)
+)
+
+insert into TypeManager values
+(1,3),
+(2,3),
+(3,1),
+(1,2),
+(2,4)
+select * from TypeManager
+
