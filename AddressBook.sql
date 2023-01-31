@@ -18,6 +18,18 @@ Email varchar(200)
 Insert into Address_Book_Table(FirstName,SecondName,Address,City,State,zip,PhoneNumber,Email) 
 values('Harsh','Vardhan','645 Catherine Street','Bangalore','Karnataka',243001,9842905050,'harsh@gmail.com'),
 ('Ramesh','Kumar','836 Heritage Rd','Chennai','Tamil Nadu',134002,98402000,'Ramesh@gmail.com'),
-('Anita','Yadav','19 Augusta Avenue','Lucknow','Uttar Pradesh',113201,87210505053,'anita@gmail.com');
+('Anita','Yadav','19 Augusta Avenue','Lucknow','Uttar Pradesh',113201,87210505053,'anita@gmail.com')
 
 select * from Address_Book_Table
+
+------ UC 4: Ability to Edit Contact Person Based on their Name ------
+--Edit Email based on Name--
+Update Address_Book_Table
+set Email='AnitaYadav@gmail.com'
+where FirstName='Anita'
+
+--Edit Address based on Name--
+Update Address_Book_Table
+set Address='836 Heritage Road'
+where FirstName='Ramesh' and SecondName='Kumar'
+
