@@ -152,3 +152,13 @@ insert into TypeManager values
 (2,4)
 select * from TypeManager
 
+
+
+------ UC 11: Create Contact for both Family and Friends Type ------ 
+
+select Address_BookName,Concat(FirstName,' ',SecondName) as Name,Concat(Address,' ,',City,' ,',State,' ,',zip) as Address,PhoneNumber,Email,ContactType_Name
+from Address_Book 
+Full JOIN Contact_Person on Address_Book.Address_BookID=AddressBook_ID 
+Full JOIN TypeManager on TypeManager.Contact_Identity=Contact_ID
+Full JOIN ContactType on TypeManager.ContactType_Identity=ContactType_ID
+
